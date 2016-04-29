@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController, BLUBeaconManagerDelegate {
 
@@ -17,16 +18,17 @@ class ViewController: UIViewController, BLUBeaconManagerDelegate {
     @IBOutlet weak var stateBeanB: UILabel!
     @IBOutlet weak var distanceBeanA: UILabel!
     @IBOutlet weak var distanceBeanB: UILabel!
+    @IBOutlet weak var oldState: UILabel!
+    @IBOutlet weak var newState: UILabel!
+    @IBOutlet weak var actualTime: UILabel!
     
     let STICK_UUID:String="BEC26202-A8D8-4A94-80FC-9AC1DE37DAA6"
-    let BASE_URL:String = "http://itc16.herokuapp.com"
-    let ARRIVAL_URI:String = "/attendance/store/arrival/"
-    let DEPARTURE_URI:String = "/attendance/store/departure/"
 
     var service:RestApiManager!
     var aram:AttendanceRestApiManager!
     var stateResolver:StateResolver!
     var state:PositionState!
+    var timer:NSTimer!
 
     // /attendance/store/arrival/	POST	person_name, timestamp
     // /attendance/store/departure/	POST	person_name, timestamp
@@ -40,11 +42,9 @@ class ViewController: UIViewController, BLUBeaconManagerDelegate {
         super.viewDidLoad()
 
         self.service = RestApiManager()
-        // let serverResponse = self.service.makeHTTPGetRequest(BASE_URL+"/person/list/")
         self.aram = AttendanceRestApiManager()
-        let serverResponse = self.aram.postArrival(BASE_URL+ARRIVAL_URI, username: "Peter")
         self.stateResolver = StateResolver()
-        
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onTick", userInfo: nil, repeats: true)
         self.distanceLabel.text = "Status"
         self.beanA.text = "Bean A:"
         self.beanB.text = "Bean B:"
@@ -54,20 +54,21 @@ class ViewController: UIViewController, BLUBeaconManagerDelegate {
         beaconManager.startScanningForBeacons()
     }
     
+    func onTick()
+    {
+        self.actualTime.text = String(NSDate().timeIntervalSince1970)
+    }
     func beaconManager(manager: BLUBeaconManager, didFindBeacon beacon: BLUBeacon) {
-//        print ("== didFindBeacon \((beacon as? BLUSBeacon)?.identifier) \((beacon as? BLUSBeacon)?.name)")
-//        print ("RSSI: \(beacon.RSSI)")
-//        print ("VisibilityTimeoutInterval: \(beacon.visibilityTimeoutInterval)")
 //        
-//        if let sbeacon = beacon as? BLUSBeacon {
-//            print (sbeacon.temperature.degreesCelsius())
-//        }
+        if let sbeacon = beacon as? BLUSBeacon {
+            sbeacon.configuration.sBeaconV1AdvancedSettings.advertisementInterval = NSTimeInterval(0.5)
+            sbeacon.configuration.sBeaconV2AdvancedSettings.advertisementInterval = NSTimeInterval(1)
+        }
 
     }
     
     func beaconManager(manager: BLUBeaconManager, beacon: BLUBeacon, didChangeDistance distance: BLUDistance) {
         if let sbeacon = beacon as? BLUSBeacon {
-            
             if self.stateResolver.isBeaconA(sbeacon) || self.stateResolver.isBeaconB(sbeacon){
                 resolveState(sbeacon)
                 
@@ -80,15 +81,7 @@ class ViewController: UIViewController, BLUBeaconManagerDelegate {
                 }
             }
             
-            
-            print ("\(sbeacon.identifier) \(sbeacon.name) \(getDistance(sbeacon))")
-//            if sbeacon.name == "StickNfind" {
-//                print ("\(sbeacon.RSSI)")
-//                let distance = sbeacon.name + " is " + getDistance(sbeacon)
-//                self.distanceLabel.text = distance
-//                // let speechUtterance = AVSpeechUtterance(string: sbeacon.name + " is " + getDistance(sbeacon))
-//                // speechSynthesizer.speakUtterance(speechUtterance)
-//            }
+            //print ("\(sbeacon.identifier) \(sbeacon.name) \(getDistance(sbeacon))")
         }
     }
     
@@ -97,10 +90,18 @@ class ViewController: UIViewController, BLUBeaconManagerDelegate {
         if newState == self.state {
             return
         }
+        self.oldState.text = self.state.rawValue
+        self.newState.text = newState.rawValue
         if self.stateResolver.isArrival(self.state, newState: newState){
+            self.aram.postArrival("Peter")
             self.distanceLabel.text = "Arrival"
+            speak("Dobré ráno Vaša excelencia, ďakujeme, že ste dnes prišli do práce.", language: "sk-SK")
+            self.view.backgroundColor = UIColor.greenColor()
         } else if self.stateResolver.isDeparture(self.state, newState: newState){
+            self.aram.postDeparture("Peter")
             self.distanceLabel.text = "Departure"
+            speak("Jejich výsosti, přeji vám hezký večer. Naschledanou někdy příště.", language: "cs-CZ")
+            self.view.backgroundColor = UIColor.redColor()
         }
         self.state = newState
     }
@@ -120,6 +121,13 @@ class ViewController: UIViewController, BLUBeaconManagerDelegate {
             return "Unknown"
         }
     }
-
+    
+    func speak(sentence:String, language:String) -> () {
+        let speechSynthesizer = AVSpeechSynthesizer()
+        let speechUtterance = AVSpeechUtterance(string: sentence)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: language)
+        speechUtterance.rate = AVSpeechUtteranceDefaultSpeechRate * 1.07
+        speechSynthesizer.speakUtterance(speechUtterance)
+    }
 }
 

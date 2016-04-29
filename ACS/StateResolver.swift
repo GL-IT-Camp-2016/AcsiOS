@@ -13,23 +13,23 @@ class StateResolver {
     let BEACON_A:String = "13348293197466712900"
     let BEACON_B:String = "2063200344559079996"
     
-    var beaconStateA:BLUDistance!
-    var beaconStateB:BLUDistance!
+    var beaconStateA:BeaconState! = BeaconState.Unknown
+    var beaconStateB:BeaconState! = BeaconState.Unknown
 
     func getNewState(beacon: BLUSBeacon) -> PositionState{
         changeBeaconState(beacon)
         
-        if beaconStateA == BLUDistance.Far && beaconStateB == BLUDistance.Near {
+        if beaconStateA == BeaconState.Far && beaconStateB == BeaconState.Near {
             return PositionState.FarANearB
-        } else if beaconStateB == BLUDistance.Far && beaconStateA == BLUDistance.Near{
+        } else if beaconStateB == BeaconState.Far && beaconStateA == BeaconState.Near{
             return PositionState.NearAFarB
-        } else if beaconStateB == BLUDistance.Far && beaconStateA == BLUDistance.Far{
+        } else if beaconStateB == BeaconState.Far && beaconStateA == BeaconState.Far{
             return PositionState.BothFar
-        } else if beaconStateB == BLUDistance.Near && beaconStateA == BLUDistance.Near{
+        } else if beaconStateB == BeaconState.Near && beaconStateA == BeaconState.Near{
             return PositionState.BothNear
-        } else if beaconStateB == BLUDistance.Unknown && beaconStateA != BLUDistance.Unknown{
+        } else if beaconStateB == BeaconState.Unknown && beaconStateA != BeaconState.Unknown{
             return PositionState.OnlyA
-        } else if beaconStateB != BLUDistance.Unknown && beaconStateA == BLUDistance.Unknown{
+        } else if beaconStateB != BeaconState.Unknown && beaconStateA == BeaconState.Unknown{
             return PositionState.OnlyB
         }
         return PositionState.NoBean
@@ -48,9 +48,9 @@ class StateResolver {
     func changeBeaconState(beacon: BLUSBeacon){
         let stringId = String(beacon.identifier)
         if stringId == BEACON_A {
-            self.beaconStateA = beacon.distance
+            self.beaconStateA = getBeaconState(beacon)
         } else if stringId == BEACON_B {
-            self.beaconStateA = beacon.distance
+            self.beaconStateB = getBeaconState(beacon)
         }
     }
     
@@ -62,5 +62,15 @@ class StateResolver {
     func isDeparture(oldState:PositionState, newState:PositionState) -> Bool{
         return (oldState == PositionState.FarANearB && newState == PositionState.NearAFarB) ||
         (oldState == PositionState.BothNear && newState == PositionState.NearAFarB)
+    }
+    
+    let intConst:Int = -70
+    func getBeaconState(beacon: BLUSBeacon) -> BeaconState{
+        if Int(beacon.RSSI) > intConst && Int(beacon.RSSI) < 0{
+        return BeaconState.Near
+        }else if Int(beacon.RSSI) <= intConst{
+            return BeaconState.Far
+        }
+        return BeaconState.Unknown
     }
 }

@@ -10,14 +10,19 @@ import Foundation
 
 class AttendanceRestApiManager {
     let restApiManager = RestApiManager()
+    let BASE_URL:String = "http://itc16.herokuapp.com"
+    let ARRIVAL_URI:String = "/attendance/store/arrival/"
+    let DEPARTURE_URI:String = "/attendance/store/departure/"
 
-    func postArrival(uri: String,  username: String){
+    func postArrival(username: String){
         let timestampNow = NSDate().timeIntervalSince1970
         let params = ["person_name":username, "timestamp":"\(Int(timestampNow))"] as Dictionary<String, String>
-        self.restApiManager.makeHTTPPostRequest(uri, body: params)
+        self.restApiManager.makeHTTPPostRequest(BASE_URL+ARRIVAL_URI, body: params)
     }
 
-    func postDeparture(uri: String, name: String){
-
+    func postDeparture(username: String){
+        let timestampNow = NSDate().timeIntervalSince1970
+        let params = ["person_name":username, "timestamp":"\(Int(timestampNow))"] as Dictionary<String, String>
+        self.restApiManager.makeHTTPPostRequest(BASE_URL+DEPARTURE_URI, body: params)
     }
 }

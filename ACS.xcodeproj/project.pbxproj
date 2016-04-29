@@ -11,6 +11,7 @@
 		3EA095AF1CD36619001FCD2F /* AttendanceRestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA095AE1CD36619001FCD2F /* AttendanceRestApiManager.swift */; };
 		F30B6C141CD3874D00A850E9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B6C131CD3874D00A850E9 /* States.swift */; };
 		F30B6C171CD38C6700A850E9 /* StateResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B6C161CD38C6700A850E9 /* StateResolver.swift */; };
+		F30B6C191CD3B2E800A850E9 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30B6C181CD3B2E800A850E9 /* AVFoundation.framework */; };
 		F3827BFB1CD33F4000FDEC41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3827BFA1CD33F4000FDEC41 /* AppDelegate.swift */; };
 		F3827BFD1CD33F4000FDEC41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3827BFC1CD33F4000FDEC41 /* ViewController.swift */; };
 		F3827C001CD33F4000FDEC41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3827BFE1CD33F4000FDEC41 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		3EA095AE1CD36619001FCD2F /* AttendanceRestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceRestApiManager.swift; sourceTree = "<group>"; };
 		F30B6C131CD3874D00A850E9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		F30B6C161CD38C6700A850E9 /* StateResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateResolver.swift; sourceTree = "<group>"; };
+		F30B6C181CD3B2E800A850E9 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		F3827BF71CD33F4000FDEC41 /* ACS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3827BFA1CD33F4000FDEC41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3827BFC1CD33F4000FDEC41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F30B6C191CD3B2E800A850E9 /* AVFoundation.framework in Frameworks */,
 				F3827C1F1CD34CD900FDEC41 /* Bluvision.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +99,7 @@
 		F3827BEE1CD33F4000FDEC41 = {
 			isa = PBXGroup;
 			children = (
+				F30B6C181CD3B2E800A850E9 /* AVFoundation.framework */,
 				F3827C201CD34D6900FDEC41 /* BridgeingHeader.h */,
 				F3827C1A1CD34C9900FDEC41 /* 3rdParty */,
 				F3827BF91CD33F4000FDEC41 /* ACS */,

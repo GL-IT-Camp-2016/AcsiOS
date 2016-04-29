@@ -8,12 +8,18 @@
 
 import Foundation
 
-enum PositionState {
-    case NoBean
-    case OnlyA
-    case NearAFarB
-    case FarANearB
-    case OnlyB
-    case BothFar
-    case BothNear
+enum PositionState :String{
+    case NoBean = "NoBean"
+    case OnlyA = "OnlyA"
+    case NearAFarB = "NearAFarB"
+    case FarANearB = "FarANearB"
+    case OnlyB = "OnlyB"
+    case BothFar = "BothFar"
+    case BothNear = "BothNear"
+}
+
+enum BeaconState {
+    case Near
+    case Far
+    case Unknown
 }

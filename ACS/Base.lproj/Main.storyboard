@@ -54,6 +54,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qew-z0-bOQ">
+                                <rect key="frame" x="8" y="238" width="467" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCY-aY-m7l">
+                                <rect key="frame" x="8" y="333" width="212" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SA-dS-mCc">
+                                <rect key="frame" x="8" y="392" width="271" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQD-QA-iGO">
                                 <rect key="frame" x="0.0" y="178" width="82" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -68,11 +86,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actualTime" destination="3SA-dS-mCc" id="OHQ-6t-42J"/>
                         <outlet property="beanA" destination="7O2-BS-PXz" id="yEn-JV-8pZ"/>
                         <outlet property="beanB" destination="WQD-QA-iGO" id="jCv-O4-def"/>
                         <outlet property="distanceBeanA" destination="a0u-QY-3gh" id="vZf-oG-UdB"/>
                         <outlet property="distanceBeanB" destination="73z-ME-Yni" id="2TL-ih-nVV"/>
                         <outlet property="distanceLabel" destination="CWs-mx-KVS" id="sv5-YI-4fY"/>
+                        <outlet property="newState" destination="BCY-aY-m7l" id="HRD-5f-ZTc"/>
+                        <outlet property="oldState" destination="Qew-z0-bOQ" id="Eic-I8-UTg"/>
                         <outlet property="stateBeanA" destination="pe5-4y-Wd7" id="vSS-vK-wbO"/>
                         <outlet property="stateBeanB" destination="hSh-K5-m2J" id="Mmg-9H-jKz"/>
                     </connections>
