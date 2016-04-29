@@ -146,7 +146,6 @@
 				TargetAttributes = {
 					F3827BF61CD33F4000FDEC41 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = XV7PMK6D5L;
 					};
 					F3827C0A1CD33F4100FDEC41 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -327,6 +326,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ACS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.globallogic.itcamp.ACS;
@@ -338,6 +338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ACS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.globallogic.itcamp.ACS;

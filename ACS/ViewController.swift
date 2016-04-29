@@ -10,9 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var distanceLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.distanceLabel.text = "nejaký text"
+        // Do any additional setup after loading the view, typically from a nib.=
     }
 
     override func didReceiveMemoryWarning() {
