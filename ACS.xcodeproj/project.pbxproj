@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3EA095AD1CD359C7001FCD2F /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA095AC1CD359C7001FCD2F /* RestApiManager.swift */; };
 		3EA095AF1CD36619001FCD2F /* AttendanceRestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA095AE1CD36619001FCD2F /* AttendanceRestApiManager.swift */; };
+		F30B6C141CD3874D00A850E9 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B6C131CD3874D00A850E9 /* States.swift */; };
+		F30B6C171CD38C6700A850E9 /* StateResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30B6C161CD38C6700A850E9 /* StateResolver.swift */; };
 		F3827BFB1CD33F4000FDEC41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3827BFA1CD33F4000FDEC41 /* AppDelegate.swift */; };
 		F3827BFD1CD33F4000FDEC41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3827BFC1CD33F4000FDEC41 /* ViewController.swift */; };
 		F3827C001CD33F4000FDEC41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3827BFE1CD33F4000FDEC41 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		3EA095AC1CD359C7001FCD2F /* RestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		3EA095AE1CD36619001FCD2F /* AttendanceRestApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceRestApiManager.swift; sourceTree = "<group>"; };
+		F30B6C131CD3874D00A850E9 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		F30B6C161CD38C6700A850E9 /* StateResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateResolver.swift; sourceTree = "<group>"; };
 		F3827BF71CD33F4000FDEC41 /* ACS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ACS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3827BFA1CD33F4000FDEC41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3827BFC1CD33F4000FDEC41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,22 @@
 			name = services;
 			sourceTree = "<group>";
 		};
+		F30B6C121CD3870A00A850E9 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				F30B6C131CD3874D00A850E9 /* States.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		F30B6C151CD38C2900A850E9 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				F30B6C161CD38C6700A850E9 /* StateResolver.swift */,
+			);
+			name = Logic;
+			sourceTree = "<group>";
+		};
 		F3827BEE1CD33F4000FDEC41 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +116,8 @@
 		F3827BF91CD33F4000FDEC41 /* ACS */ = {
 			isa = PBXGroup;
 			children = (
+				F30B6C151CD38C2900A850E9 /* Logic */,
+				F30B6C121CD3870A00A850E9 /* models */,
 				3EA095AB1CD359A8001FCD2F /* services */,
 				F3827BFA1CD33F4000FDEC41 /* AppDelegate.swift */,
 				F3827BFC1CD33F4000FDEC41 /* ViewController.swift */,
@@ -174,6 +196,7 @@
 				TargetAttributes = {
 					F3827BF61CD33F4000FDEC41 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = XV7PMK6D5L;
 					};
 					F3827C0A1CD33F4100FDEC41 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -226,10 +249,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F30B6C141CD3874D00A850E9 /* States.swift in Sources */,
 				F3827BFD1CD33F4000FDEC41 /* ViewController.swift in Sources */,
 				F3827BFB1CD33F4000FDEC41 /* AppDelegate.swift in Sources */,
 				3EA095AD1CD359C7001FCD2F /* RestApiManager.swift in Sources */,
 				3EA095AF1CD36619001FCD2F /* AttendanceRestApiManager.swift in Sources */,
+				F30B6C171CD38C6700A850E9 /* StateResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +382,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/3rdParty",
@@ -365,6 +391,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.globallogic.itcamp.ACS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = BridgeingHeader.h;
 			};
 			name = Debug;
@@ -374,6 +401,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/3rdParty",
@@ -382,6 +410,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.globallogic.itcamp.ACS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = BridgeingHeader.h;
 			};
 			name = Release;
